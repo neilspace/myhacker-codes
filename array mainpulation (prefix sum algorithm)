@@ -10,17 +10,19 @@ public class Solution {
 
     // Complete the arrayManipulation function below.
     static long arrayManipulation(int n, int[][] queries) {
-    long newarr[] = new long[n+2];
+    long[] newarr = new long[n];
 
     for (int i = 0; i < queries.length; i++) {
-      int a = queries[i][0]  ;
-      int b = queries[i][1] ;
+      int a = queries[i][0] - 1;
+      int b = queries[i][1] - 1;
       int k = queries[i][2];
 
       newarr[a] += k;
+      if (b + 1 < n ) {
         newarr[b + 1] -= k;
-      // we need to know what's prefix sum alogrithm to apply this logic
+      }
     }
+    //we need to know what's pefix sum algorithm to be able to apply this topic
 
     long max = 0; long sum = 0;
     for (int i = 0; i < n; i++) {
