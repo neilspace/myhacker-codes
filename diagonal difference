@@ -1,0 +1,39 @@
+import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.function.*;
+import java.util.regex.*;
+import java.util.stream.*;
+import static java.util.stream.Collectors.joining;
+import static java.util.stream.Collectors.toList;
+
+public class Solution {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+        int [][] matrix = new int[n][n];
+        int d1=0,d2=0;
+        for(int i=0;i<n;i++){       
+        //take in matrix elements
+            for (int j=0;j<n;j++){
+                matrix[i][j]=in.nextInt();
+                if (i==j){                    
+                //take first diagonal and find its sum
+                    d1= d1+ matrix[i][j];
+                }
+                    if(i+j==n-1){
+                        d2=d2+ matrix[i][j];       
+                        //sunm of second diagonal
+                    }
+                }
+            }
+            System.out.println(Math.abs(d1-d2));   
+            //difference (absolute)
+            in.close();
+        }
+
+    
+}
