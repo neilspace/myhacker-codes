@@ -1,0 +1,42 @@
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+
+        Scanner sc = new Scanner (System.in);
+        int N = sc.nextInt();
+        Stack <Integer> main = new Stack<>();
+        Stack <Integer> max = new Stack<>();
+        max.push(Integer.MIN_VALUE);
+        for(int i =0;i<N;i++){
+            int op = sc.nextInt();
+            switch(op){
+                case 1:
+                int item = sc.nextInt();
+                main.push(item);
+                int maxsofar = max.peek();
+                if(item>maxsofar){
+                    max.push(item);
+                } else{
+                    max.push(maxsofar);
+                }
+                break;
+                case 2:
+                main.pop();
+                max.pop(); //maintain a amx array so that you dont have to always check the max element in array and save complexity
+                break;
+
+                case 3:
+                System.out.println(max.peek());
+                break;
+
+            }
+        }
+        sc.close();
+
+    }
+}
+
