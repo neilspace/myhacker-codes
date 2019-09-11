@@ -1,0 +1,62 @@
+import java.util.Scanner;
+import java.util.Stack;
+
+public class Solution {
+    public static void main (String[] args) {
+        Scanner sc = new Scanner (System.in);
+
+        int n = sc.nextInt();
+        int q = sc.nextInt();
+
+        Stack<Integer> A = new Stack<Integer>();
+        for(int i=0;i<n;i++){
+            A.push(sc.nextInt());  //stack a is ready
+        }
+
+        int prime =2;
+        for (int i=0;i<q;i++){
+            Stack<Integer> B = new Stack<Integer>(); 
+            Stack<Integer> AA = new Stack<Integer>();
+             while(!A.empty()){
+                 int number = A.pop();  //make a stack for prime aand otherwise numbers
+                 if(number % prime == 0){
+                     B.push(number);
+                 }else{
+                     AA.push(number); //fill those stack
+                 }
+                 }
+
+                 printstack(B);
+                 A=AA;
+                 prime = nextprime(prime);
+        }
+        printstack(A);
+
+        sc.close();
+}
+
+ static void printstack( Stack<Integer> s){ //to print stack usuong pop method
+     while (!s.empty()){
+         System.out.println(s.pop());
+     }
+ }
+
+static int nextprime(int replaceforprime){
+    for (int i = replaceforprime +1;;i++){
+        if (isprime(i)){
+            return i;
+        }
+    }
+} //to iterate prime
+
+static boolean isprime(int fornextprime){ //to check if its prime or not
+ for(int i = 2; i*i<= fornextprime;i++ ){
+     if(fornextprime % i ==0){
+         return false;
+     }
+ }
+ return true ; 
+}
+}
+
+          
