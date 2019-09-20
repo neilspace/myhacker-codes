@@ -1,0 +1,65 @@
+import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.function.*;
+import java.util.regex.*;
+import java.util.stream.*;
+import static java.util.stream.Collectors.joining;
+import static java.util.stream.Collectors.toList;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class DynamicArray {
+    List <Integer> seq =  new ArrayList<Integer>();
+    List<List <Integer>> seqList = new ArrayList <List<Integer>>();
+    int lastanswer = 0;
+
+    public DynamicArray (int N){
+        for(int i=0;i<N;i++){
+            seq =new ArrayList <Integer>();
+            seqList.add(seq);
+        }
+    }
+    void appendvalue(int x,int y,int N){
+        int rowindex =(x^ lastanswer )% N;
+         List <Integer> seq = seqList.get(rowindex);
+         seq.add(y);
+
+}
+
+
+private void printvalue(int x,int y, int N){
+    int colindex = 0;
+    int rowindex = (x^lastanswer)%N;
+    List <Integer> seq = seqList.get(rowindex);
+    colindex = y % seq.size();
+    lastanswer = seq.get(colindex);
+    System.out.println(lastanswer);
+}
+
+
+
+
+public static void main (String[] args) {
+    Scanner sc = new Scanner (System.in);
+    int N = sc.nextInt();
+    int Q = sc.nextInt();
+    DynamicArray da = new DynamicArray (N);
+    for (int i=0; i<Q; i++){
+        int querytype = sc.nextInt();
+        int x = sc.nextInt();
+        int y = sc.nextInt();
+        if(querytype == 1){
+            da.appendvalue(x,y,N);
+        }else{
+            da.printvalue(x,y,N);
+        }
+
+    }
+    sc.close();
+}
+}
