@@ -1,0 +1,55 @@
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+       Scanner sc = new Scanner (System.in);
+
+       int q = sc.nextInt();
+
+       Queue<Integer> query = new  Queue<Integer>();
+       for (int i =0;i< q;i++){
+           int type = sc.nextInt();
+           if (type==1){
+               int x = sc.nextInt();
+               query.enqueue(x);
+           }else if(type ==2){
+               query.dequeue();
+           }else {
+           System.out.println(query.peek());
+       }
+    }
+    sc.close();
+}
+}
+
+class Queue<Q> {
+    Stack<Q> pushstack = new Stack<Q>();
+    Stack<Q> popstack = new Stack<Q>();
+
+    void enqueue(Q item){
+        pushstack.push(item);
+    }
+    Q dequeue (){    //watch a video from "back to back swe" to know whats happeneing its easy.
+        if (popstack.empty()){
+            while(!pushstack.empty()){
+                popstack.push(pushstack.pop());
+            }
+
+        }
+        return popstack.pop();
+    }
+    Q peek () {
+          if (popstack.empty()){
+            while(!pushstack.empty()){
+                popstack.push(pushstack.pop());
+            }
+
+        }
+        return popstack.peek();
+
+    }
+
+
+}
