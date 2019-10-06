@@ -11,7 +11,7 @@ class Node {
         left = null;
         right = null;
     }
-}
+}  //find the root where both the input nodes split
 
 class Solution {
 
